@@ -6,6 +6,21 @@ import { fetchProduct } from './fetchFunctions';
 
 // Fique a vontade para modificar o código já escrito e criar suas próprias funções!
 
+function calculatePrice() {
+  const cart = document.querySelector('.cart__products');
+  const prices = [];
+  cart.querySelectorAll('.product__price__value')
+    .forEach((price) => {
+      prices.push(Number(price.textContent));
+    });
+  const totalPrices = prices.reduce((acc, curr) => {
+    acc += curr;
+    return acc;
+  }, 0);
+  const totalPrice = document.querySelector('.total-price');
+  totalPrice.textContent = totalPrices;
+}
+
 /**
  * Função responsável por criar e retornar o elemento de imagem do produto.
  * @param {string} imageSource - URL da imagem.
@@ -49,6 +64,7 @@ export const getIdFromProduct = (product) => (
 const removeCartProduct = (li, id) => {
   li.remove();
   removeCartID(id);
+  calculatePrice();
 };
 
 /**
@@ -129,6 +145,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     const cartProduct = createCartProductElement(retorno);
     const cart = document.querySelector('.cart__products');
     cart.appendChild(cartProduct);
+    calculatePrice();
   });
   section.appendChild(cartButton);
 
