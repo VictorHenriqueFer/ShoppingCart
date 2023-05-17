@@ -4,7 +4,7 @@ export const fetchProduct = () => {
 
 export const fetchProductsList = async (query) => {
   if (!query) {
-    return new Error('Termo de busca não informado');
+    throw new Error('Termo de busca não informado');
   }
   const endpoint = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
   return fetch(endpoint)
