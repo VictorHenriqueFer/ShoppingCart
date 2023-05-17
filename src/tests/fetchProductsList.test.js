@@ -8,23 +8,14 @@ describe('Teste a função fetchProductsList', () => {
     expect(typeof fetchProductsList).toBe('function');
   });
 
-  it('fetch é chamado ao executar fetchProductsList', () => {
-    return fetchProductsList('computador')
-    .then(() => {
-      expect(fetch).toHaveBeenCalled();
-    })
-
+  it('fetch é chamado ao executar fetchProductsList', async () => {
+    await fetchProductsList('computador')
+    expect(fetch).toHaveBeenCalled()
   });
 
-  it('fetch é chamado com o endpoint correto ao executar fetchProductsList', () => {
+  it('fetch é chamado com o endpoint correto ao executar fetchProductsList', async () => {
     const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
-    return fetchProductsList('computador')
-    .then(() => {
+    await fetchProductsList('computador')
       expect(fetch).toBeCalledWith(url);
     })
-
-  });
-
-  // it('...', () => {
-  // });
 });
