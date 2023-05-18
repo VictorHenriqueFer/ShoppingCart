@@ -35,7 +35,6 @@ function calculatePrice() {
     .forEach((price) => {
       prices.push(Number(price.textContent));
     });
-  console.log(prices);
   const totalPrices = prices.reduce((acc, curr) => {
     acc += curr;
     return acc;

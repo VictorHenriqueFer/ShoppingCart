@@ -18,4 +18,12 @@ describe('Teste a função fetchProductsList', () => {
     await fetchProductsList('computador')
       expect(fetch).toBeCalledWith(url);
     })
+    
+  it('Ao chamar a função fetchProductsList sem argumento, retorna uma mensagem de erro', async () => {
+    try {
+      await fetchProductsList()
+    } catch (error) {
+      expect(error.message).toBe('Termo de busca não informado');
+    }
+  });
 });
