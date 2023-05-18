@@ -4,12 +4,7 @@ export const fetchProduct = async (id) => {
   }
   const endpoint = `https://api.mercadolibre.com/items/${id}`;
   return fetch(endpoint)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Não foi possível obter os dados do produto');
-      }
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => data);
 };
 
@@ -19,11 +14,6 @@ export const fetchProductsList = async (query) => {
   }
   const endpoint = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
   return fetch(endpoint)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Não foi possível obter os dados');
-      }
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => data.results);
 };
